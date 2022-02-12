@@ -1,15 +1,16 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-int n;
 int a[20][20];
-vector<pair<int, int>> groups;
-vector<int> visit(20,0);
-
-int calc(){
-    if(groups.size()==n) {
-        int sum=0;
-        for(auto itr: groups)sum^=(a[itr.first][itr.second]);
+vector<pair<int, int>> vec;
+int visit[20];
+int n;
+int calc() {
+    int sum=0;
+    if(vec.size()==n){
+        for(auto itr :vec){
+            sum^=a[itr.first][itr.second];
+        }
         return sum;
     }
     int l;
@@ -19,21 +20,20 @@ int calc(){
             break;
         }
     }
-    int ret = 0;
-    visit[l]=1;
+    visit[l]=true;
+    int ret=0;
     for(int i=1;i<=2*n;i++){
         if(!visit[i]){
-            visit[i]=1;
-            groups.push_back({l,i});
-            ret = max(ret,calc());
-            groups.pop_back();
-            visit[i]=0;
+            visit[i]=true;
+            vec.push_back({l,i});
+            ret=max(ret,calc());
+            vec.pop_back();
+            visit[i]=false;
         }
     }
-    visit[l]=0;
+    visit[l]=false;
     return ret;
 }
-
 int main() {
     cin>>n;
     for(int i=1;i<=2*n-1;i++){
