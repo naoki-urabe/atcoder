@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
-#define mod 998244353
-int dp[1048576][10]={0};
 using namespace std;
+
 int main() { 
     int n;
     cin>>n;
+    long long dp[1000000+1][10]={0};
     for(int i=1;i<=9;i++)dp[1][i]=1;
-    for(int d=2;d<=n;d++){
-        for(int i=1;i<=9;i++){
-            for(int j=max(1,i-1);j<=min(9,i+1);j++){
-                dp[d][j]+=dp[d-1][i];
-                dp[d][j]%=mod;
-            }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=9;j++){
+            if(j-1>=1)dp[i][j]+=dp[i-1][j-1];
+            if(j+1<=9)dp[i][j]+=dp[i-1][j+1];
+            dp[i][j]+=dp[i-1][j];
+            dp[i][j]%=998244353;
         }
     }
-    int res=0;
+    long long ans=0;
     for(int i=1;i<=9;i++){
-        res+=dp[n][i];
-        res%=mod;
+        ans+=dp[n][i];
+        ans%=998244353;
     }
-    cout<<res<<endl;
+    cout<<ans<<endl;
     return 0;
 }

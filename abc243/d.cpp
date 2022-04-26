@@ -8,8 +8,8 @@ int main() {
     cin>>s;
     string t;
     for(int i=0;i<n;i++){
-        if(s[i]=='U'){
-            if(t.size()>0&&t.back()!='U')t.pop_back();
+        if(t.size()>0&&t.back()!='U'){
+            if(s[i]=='U')t.pop_back();
             else t+=s[i];
         } else {
             t+=s[i];

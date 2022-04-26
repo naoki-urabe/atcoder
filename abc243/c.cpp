@@ -2,37 +2,24 @@
 using namespace std;
 int main() { 
     int n;
-    cin>>n;
-    vector<int> x(n,0);
-    vector<int> y(n,0);
-    for(int i=0;i<n;i++){
-        cin>>x[i]>>y[i];
-    }
+    long long x;
+    cin>>n>>x;
     string s;
     cin>>s;
-    map<int, int> R;
-    map<int, int> L;
-    bool flag=false;
+    string t;
     for(int i=0;i<n;i++){
-        if(s[i]=='R'){
-            if(R.find(y[i])!=R.end()){
-                R[y[i]]=min(R[y[i]],x[i]);
-            } else {
-                R[y[i]]=x[i];
-            }
-        }
-        if(s[i]=='L'){
-            if(L.find(y[i])!=L.end()){
-                L[y[i]]=max(L[y[i]],x[i]);
-            } else {
-                L[y[i]]=x[i];
-            }
-        }
-        if(R.find(y[i])!=R.end()&&L.find(y[i])!=L.end()){
-            if(R[y[i]]<L[y[i]])flag=true;
+        if(t.size()>0&&t.back()!='U'){
+            if(s[i]=='U')t.pop_front();
+            else t+=s[i];
+        } else {
+            t+=s[i];
         }
     }
-    if(flag)cout<<"Yes"<<endl;
-    else cout<<"No"<<endl;
+    for(int i=0;i<t.size();i++){
+        if(t[i]=='U')x/=2;
+        if(t[i]=='L')x*=2;
+        if(t[i]=='R')x=x*2+1;
+    }
+    cout<<x<<endl;
     return 0;
 }
