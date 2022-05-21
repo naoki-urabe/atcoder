@@ -9,6 +9,10 @@ import (
 
 var sc = bufio.NewScanner(os.Stdin)
 
+func solve() {
+	
+}
+
 func inputI() int {
 	sc.Scan()
 	i, e := strconv.Atoi(sc.Text())
@@ -32,6 +36,20 @@ func inputS() string {
 	return sc.Text()
 }
 
-func main() {
+func Max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
 
+func Min(x, y int) int {
+	if x > y {
+		return y
+	}
+	return x
+}
+
+func main() {
+	solve()
 }
