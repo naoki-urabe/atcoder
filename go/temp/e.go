@@ -10,7 +10,7 @@ import (
 var sc = bufio.NewScanner(os.Stdin)
 
 func solve() {
-	
+	sc.Split(bufio.ScanWords)
 }
 
 func inputI() int {
