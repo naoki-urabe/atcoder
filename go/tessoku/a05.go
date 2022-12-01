@@ -11,6 +11,19 @@ var sc = bufio.NewScanner(os.Stdin)
 
 func solve() {
 	sc.Split(bufio.ScanWords)
+	n := inputI()
+	k := inputI()
+	ans := 0
+	for i := 1; i <= n; i++ {
+		for j := 1; j <= n; j++ {
+			l := k - i - j
+			if l > 0 && l <= n {
+				// fmt.Println(i, j, l)
+				ans++
+			}
+		}
+	}
+	fmt.Println(ans)
 }
 
 func inputI() int {
